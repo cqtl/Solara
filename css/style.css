@@ -281,7 +281,7 @@ body.background-transitioning .background-stage__layer--transition {
     font-weight: 500;
     cursor: pointer;
     transition: all 0.25s ease;
-    min-width: 150px;
+    min-width: 80px;
     position: relative;
     box-shadow: none;
 }
