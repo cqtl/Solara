@@ -209,7 +209,7 @@ body.mobile-view .mobile-turntable__platter::before {
 
 body.mobile-view .album-cover {
     position: absolute;
-    top: 12%;
+    top: 13%;
     left: 50%;
     width: 58%;
     aspect-ratio: 1 / 1;
