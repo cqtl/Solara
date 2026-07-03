@@ -973,7 +973,7 @@ body.mobile-view .search-results-list {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    padding: 0 16px 20px 16px;
+    padding: 0 8px 4px 2px;
     width: 100%;
     box-sizing: border-box;
 }
@@ -1040,16 +1040,17 @@ body.mobile-view .search-result-item.selected {
 }
 
 body.mobile-view .search-result-select {
-    width: 24px;
-    height: 24px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     background: transparent;
     color: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    margin-left: 0px;
     transition: all 0.25s ease;
     cursor: pointer;
 }
@@ -1104,7 +1105,7 @@ body.mobile-view .search-result-actions {
 }
 
 body.mobile-view .search-result-actions .action-btn {
-    width: 36px;
+    width: 20px;
     height: 36px;
     border-radius: 50%;
     background: transparent;
