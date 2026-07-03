@@ -860,6 +860,17 @@ body.mobile-view .search-title {
     letter-spacing: -0.02em;
 }
 
+body.mobile-view .search-title .search-subtitle {
+    display: inline;
+    margin-left: 0.5rem;
+    font-size: 0.55rem;
+    font-style: italic;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    vertical-align: middle;
+    letter-spacing: normal;
+}
+
 body.mobile-view .search-bar-unified {
     display: flex;
     align-items: center;
