@@ -3983,7 +3983,7 @@ async function performSearch(isLiveSearch = false) {
 
         // 如果没有结果，显示提示
         if (state.searchResults.length === 0) {
-            showNotification("未找到相关歌曲", "error");
+            showNotification("该频道繁忙，可切换频道重试", "error");
         }
 
     } catch (error) {
@@ -4389,7 +4389,7 @@ function displaySearchResults(newItems, options = {}) {
     const itemsToAppend = Array.isArray(newItems) ? newItems : [];
 
     if (itemsToAppend.length === 0 && state.renderedSearchCount === 0 && totalCount === 0) {
-        container.innerHTML = "<div style=\"text-align: center; color: var(--text-secondary-color); padding: 20px;\">未找到相关歌曲</div>";
+        container.innerHTML = "<div style=\"text-align: center; color: var(--text-secondary-color); padding: 20px;\">该频道繁忙，可切换频道重试</div>";
         state.renderedSearchCount = 0;
         debugLog("显示搜索结果: 0 个结果, 无可用数据");
         return;
