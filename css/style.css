@@ -149,6 +149,14 @@ body.background-transitioning .background-stage__layer--transition {
     text-align: center; 
     position: relative; 
 }
+.header-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
 .header h1 { 
     margin: 0; 
     font-size: 2.2em; 
@@ -163,6 +171,37 @@ body.background-transitioning .background-stage__layer--transition {
     font-size: 0.9em; 
     margin-top: 10px; 
     font-style: italic; 
+}
+
+.header .header-pointer {
+    margin-top: 12px;
+    margin-left: 8px;
+    font-size: 1.15em;
+    line-height: 1;
+    animation: header-pointer-bounce 0.8s infinite alternate;
+}
+
+.header .header-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    text-decoration: none;
+    vertical-align: middle;
+    margin-top: 12px;
+}
+
+.header .header-link:hover {
+    opacity: 0.8;
+}
+
+.header .header-link i {
+    font-size: 1.1em;
+}
+
+@keyframes header-pointer-bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-3px); }
 }
 
 /* 设置按钮齿轮动画及大小 */
