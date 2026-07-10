@@ -150,11 +150,12 @@ body.background-transitioning .background-stage__layer--transition {
     position: relative; 
 }
 .header-title {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 4px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    white-space: nowrap;
 }
 
 .header h1 { 
@@ -165,6 +166,7 @@ body.background-transitioning .background-stage__layer--transition {
     letter-spacing: 1px;
     user-select: none;
     cursor: default;
+    white-space: nowrap;
 }
 .header .warning { 
     color: var(--text-secondary-color); 
