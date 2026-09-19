@@ -1,23 +1,30 @@
 const MAX_AGE_SECONDS = 48 * 60 * 60;
 
+function parsePasswords(value: unknown): string[] {
+  return typeof value === "string"
+    ? value.split(",").map((password) => password.trim()).filter(Boolean)
+    : [];
+}
+
 export async function onRequestPost(context: any) {
   const { request, env } = context;
-  const passwordEnv = env.PASSWORD;
+  const passwords = parsePasswords(env.PASSWORD);
   const url = new URL(request.url);
 
   const body = await request.json().catch(() => ({ password: "" }));
   const providedPassword = typeof body.password === "string" ? body.password : "";
 
-  if (typeof passwordEnv !== "string") {
+  if (passwords.length === 0) {
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
   }
 
-  if (providedPassword === passwordEnv) {
+  if (passwords.includes(providedPassword)) {
+    const encodedPassword = btoa(providedPassword);
     const cookieSegments = [
-      `auth=${btoa(passwordEnv)}`,
+      `auth=${encodedPassword}`,
       `Max-Age=${MAX_AGE_SECONDS}`,
       "Path=/",
       "SameSite=Lax",

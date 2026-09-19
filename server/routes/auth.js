@@ -31,22 +31,32 @@ function isPublicPath(pathname) {
   );
 }
 
+function parsePasswords(value) {
+  return typeof value === 'string'
+    ? value.split(',').map(password => password.trim()).filter(Boolean)
+    : [];
+}
+
 /**
- * @param {string|null} password - 来自环境变量 PASSWORD
+ * @param {string|null} passwordConfig - 来自环境变量 PASSWORD
  * @returns {import('express').RequestHandler}
  */
-module.exports = function createAuthMiddleware(password) {
+module.exports = function createAuthMiddleware(passwordConfig) {
+  const passwords = parsePasswords(passwordConfig);
+
   return (req, res, next) => {
     // 未配置密码时，全部放行
-    if (typeof password !== 'string') return next();
+    if (passwords.length === 0) return next();
 
     // 公开路径直接放行
     if (isPublicPath(req.path)) return next();
 
     // 验证 cookie（与 Cloudflare 版本完全一致：cookie auth = btoa(password)）
     const cookieAuth = req.cookies && req.cookies.auth;
-    const expected = Buffer.from(password).toString('base64'); // 等价于 btoa(password)
-    if (cookieAuth && cookieAuth === expected) return next();
+    const isAuthenticated = cookieAuth && passwords.some(password =>
+      cookieAuth === Buffer.from(password).toString('base64')
+    );
+    if (isAuthenticated) return next();
 
     // 验证失败，重定向到登录页
     return res.redirect(302, '/login');

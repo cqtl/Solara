@@ -16,6 +16,12 @@ const PUBLIC_FILE_EXTENSIONS = new Set([
   ".woff2",
 ]);
 
+function parsePasswords(value: unknown): string[] {
+  return typeof value === "string"
+    ? value.split(",").map((password) => password.trim()).filter(Boolean)
+    : [];
+}
+
 function hasPublicExtension(pathname: string): boolean {
   const lastDotIndex = pathname.lastIndexOf(".");
   if (lastDotIndex === -1) {
@@ -34,9 +40,9 @@ function isPublicPath(pathname: string): boolean {
 
 async function authMiddleware(context: any) {
   const { request, env } = context;
-  const password = env.PASSWORD;
+  const passwords = parsePasswords(env.PASSWORD);
 
-  if (typeof password !== "string") {
+  if (passwords.length === 0) {
     return context.next();
   }
 
@@ -60,7 +66,7 @@ async function authMiddleware(context: any) {
     }
   });
 
-  if (cookies.auth && cookies.auth === btoa(password)) {
+  if (cookies.auth && passwords.some((password: string) => cookies.auth === btoa(password))) {
     return context.next();
   }
 

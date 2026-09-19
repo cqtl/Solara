@@ -115,6 +115,8 @@ docker compose up -d
 - **Docker 部署：** 在 `docker-compose.yml` 的 `environment` 中设置 `PASSWORD` 环境变量，例如 `- PASSWORD=your_password`。如果不需要密码，可不配置该变量。
 - 部署完成后，未登录的访问者会被自动重定向到 `/login` 页面并需输入该口令；若想关闭访问口令，删除该环境变量并重新部署或重启容器即可。
 
+Multiple passwords are supported through the `PASSWORD` environment variable using comma-separated values, for example `PASSWORD=pass1,pass2`. Any configured password can be used to log in.
+
 ## 🌐 多语言设置 (English Version)
 - **Cloudflare Pages：** 在项目的 **Settings → Functions → Environment variables** 中新增名为 `LANGUAGE` 的环境变量，值为 `ENG`。
 - **Docker 部署：** 在 `docker-compose.yml` 的 `environment` 中设置 `language` 环境变量为 `ENG`，即 `- language=ENG`（注意：Docker 环境下环境变量名是小写 `language`，以与 wrangler 本地开发环境一致）。

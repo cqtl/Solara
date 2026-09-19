@@ -53,6 +53,7 @@
         "访问口令": "Access Token",
         "请输入密码": "Enter password",
         "只有输入了正确口令的成员才能继续访问内容。": "Only members with the correct token can access the content.",
+        "获取密码，请看：": "To get the password, please see:",
         "进入 来这里音乐": "Enter lzlMusic",
         "安全状态：受保护": "Security Status: Protected",
         "密码错误，请重试": "Incorrect password, please try again",

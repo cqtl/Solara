@@ -7,24 +7,31 @@ const { Router } = require('express');
 
 const MAX_AGE_SECONDS = 48 * 60 * 60; // 48 小时
 
+function parsePasswords(value) {
+  return typeof value === 'string'
+    ? value.split(',').map(password => password.trim()).filter(Boolean)
+    : [];
+}
+
 /**
- * @param {string|null} password
+ * @param {string|null} passwordConfig
  * @returns {import('express').Router}
  */
-module.exports = function createLoginRouter(password) {
+module.exports = function createLoginRouter(passwordConfig) {
   const router = Router();
+  const passwords = parsePasswords(passwordConfig);
 
   router.post('/', async (req, res) => {
     const body = req.body || {};
     const providedPassword = typeof body.password === 'string' ? body.password : '';
 
     // 未配置密码时直接成功
-    if (typeof password !== 'string') {
+    if (passwords.length === 0) {
       return res.json({ success: true });
     }
 
-    if (providedPassword === password) {
-      const encoded = Buffer.from(password).toString('base64'); // 等价于 btoa(password)
+    if (passwords.includes(providedPassword)) {
+      const encoded = Buffer.from(providedPassword).toString('base64'); // 等价于 btoa(password)
       const isHttps = req.secure || req.headers['x-forwarded-proto'] === 'https';
 
       const cookieParts = [
