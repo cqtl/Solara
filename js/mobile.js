@@ -15,7 +15,7 @@
         if (!dom.mobileToolbarTitle) {
             return;
         }
-        dom.mobileToolbarTitle.textContent = "lincanMusic";
+        dom.mobileToolbarTitle.textContent = "来这里音乐";
     }
 
     function updateMobileOverlayScrim() {

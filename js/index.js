@@ -1305,7 +1305,7 @@ bootstrapPersistentStorage();
     function updateMediaMetadata() {
         // 依赖现有全局 state.currentSong；已在项目中使用 localStorage 保存/恢复。:contentReference[oaicite:7]{index=7}
         const song = state.currentSong || {};
-        const title = song.name || dom.currentSongTitle?.textContent || 'lincanMusic';
+        const title = song.name || dom.currentSongTitle?.textContent || '来这里音乐';
         const artist = song.artist || dom.currentSongArtist?.textContent || '';
         const artworkUrl = state.currentArtworkUrl || '';
 
@@ -4712,7 +4712,7 @@ function exportPlaylist() {
     try {
         const payload = {
             meta: {
-                app: "lincanMusic",
+                app: "lzlMusic",
                 version: PLAYLIST_EXPORT_VERSION,
                 exportedAt: new Date().toISOString(),
                 itemCount: state.playlistSongs.length
@@ -5339,7 +5339,7 @@ function exportFavorites() {
     try {
         const payload = {
             meta: {
-                app: "lincanMusic",
+                app: "lzlMusic",
                 version: FAVORITE_EXPORT_VERSION,
                 exportedAt: new Date().toISOString(),
                 itemCount: favorites.length,
